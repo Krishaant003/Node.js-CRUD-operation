@@ -20,6 +20,11 @@ validategenre = (genre) =>
     });
     return schema.validate(genre)
 }
+
+find = (index) =>
+{
+   return Genres.find(c => c.id === parseInt(index))
+}
  
 app.get('/api/genres',(req,res)=>
 {
@@ -28,7 +33,9 @@ app.get('/api/genres',(req,res)=>
 
 app.get('/api/genres/:id',(req,res)=>
 {
-   const genre = Genres.find(c => c.id === parseInt(req.params.id))
+   
+   const genre = find(req.params.id)
+
    if(!genre) return res.status(404).send("No genre available with this Id")
    res.send(genre);
 })
@@ -48,7 +55,7 @@ app.post('/api/genres',(req,res)=>
 
 app.put('/api/genres/:id',(req,res)=>
 {
-    const genre = Genres.find(c => c.id === parseInt(req.params.id))
+    const genre = find(req.params.id)
     if(!genre) return res.status(400).send("No genre with this Id");
 
     const {error} =validategenre(req.body);
