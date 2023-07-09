@@ -44,6 +44,14 @@ app.put('/api/genres/:id',(req,res)=>
     res.send(genre);
 })
 
+app.delete('/api/genres/:id',(req,res)=>
+{
+    const genre = Genres.find(c => c.id === parseInt(req.params.id))
+    if(!genre) res.status(404).send("No genre with given Id")
+    const index = Genres.indexOf(genre);
+    Genres.splice(index,1);
+    res.send(genre);
+})
 
 const PORT = process.env.PORT || 3000;
 
