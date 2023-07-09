@@ -2,6 +2,8 @@
 const express = require('express');
 const app =  express()
 
+app.use(express.json())
+
 const Genres = [
     {id : 1 , category: "Action"},
     {id : 2 , category: "Romance"},
@@ -23,11 +25,20 @@ app.get('/api/genres/:id',(req,res)=>
    res.send(genre);
 })
 
+app.post('/api/genres',(req,res)=>
+{
+    const genre =
+    {id:Genres.length +1,
+     category: req.body.category
+    }
+    Genres.push(genre)
+    res.send(genre);
+})
 
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT,()=>
 {
-    console.log("Listening to port 3000");
+    console.log(`Listening to port ${PORT}`);
 })
