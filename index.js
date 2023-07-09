@@ -35,6 +35,15 @@ app.post('/api/genres',(req,res)=>
     res.send(genre);
 })
 
+app.put('/api/genres/:id',(req,res)=>
+{
+    const genre = Genres.find(c => c.id === parseInt(req.params.id))
+    if(!genre) return res.status(400).send("No genre with this Id");
+
+    genre.category = req.body.category;
+    res.send(genre);
+})
+
 
 const PORT = process.env.PORT || 3000;
 
