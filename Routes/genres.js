@@ -30,7 +30,7 @@ validategenre = (genre) =>
  
 router.get('/',async (req,res)=>
 {
-    const genres = await Genre.find().sort('name');
+    const genres = await Genre.find().sort('category');
     res.send(genres)
 })
 
