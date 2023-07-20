@@ -1,33 +1,7 @@
-const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
-const joi =require('joi');
-const Joi = require('joi');
+const {Customer,validateCustomer} =require('../models/customers')
 router.use(express.json());
-
-const customerSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        minlength:3
-    },
-    phone:{
-        type: Number,
-        required: true,
-    }
-});
-
-const Customer = new mongoose.model('Customer',customerSchema);
-
-validateCustomer = customer =>
-{
-    const schema = Joi.object({
-        name : Joi.string().min(3).required(),
-        phone: Joi.number().required()
-    })
-
-    return schema.validate(customer);
-}
 
 router.get('/', async (req ,res) => {
     const customers = await Customer.find().sort('name');
@@ -66,7 +40,7 @@ router.put('/:id', async(req ,res) =>
     const {error} = validateCustomer(req.body);
     if (error) return res.status(404).send(error.details[0].message);
 
-    
+
     try{
     const customer = await Customer.findByIdAndUpdate(req.params.id,{
         name: req.body.name,
