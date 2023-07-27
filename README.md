@@ -4,7 +4,7 @@ This project contains genre,customer,movie list for the movie selection website.
 
 PROJECT SETUP:  
 -
-+Clone the repository  
++ Clone the repository  
 +Install node in your device  
 +go the clones repository  
 +use "npm i" command to install all the dependencies 
