@@ -2,7 +2,7 @@
 Built a RESTful API using Node.js.  
 This project contains genre,customer,movie list for the movie selection website.  
 
-HOW TO RUN[Locally]:  
+PROJECT SETUP:  
 -
 ->Clone the repository  
 ->Install node in your device  
